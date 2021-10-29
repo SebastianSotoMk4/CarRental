@@ -10,9 +10,12 @@ Option Compare Binary
 Public Class RentalForm
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
         'Closes program when clicked
-        Me.Close()
+        MsgBox("close?", vbYesNo)
+        If vbYesNo = 4 Then
+            Me.Close()
+        End If
     End Sub
-    'spellcheck
+    'Sets Defaults when called
     Sub SetDefaults()
         NameTextBox.Text = ""
         AddressTextBox.Text = ""
@@ -20,7 +23,7 @@ Public Class RentalForm
         StateTextBox.Text = ""
         ZipCodeTextBox.Text = ""
         BeginOdometerTextBox.Text = ""
-        EndOdometerTextBox.Text = " "
+        EndOdometerTextBox.Text = ""
         DaysTextBox.Text = ""
         TotalMilesTextBox.Text = ""
         MileageChargeTextBox.Text = ""
@@ -31,9 +34,24 @@ Public Class RentalForm
         KilometersradioButton.Checked = False
         AAAcheckbox.Checked = False
         Seniorcheckbox.Checked = False
+    End Sub
+    Sub AddMiles()
+        Dim beginingMiles As Integer
+        Dim endMiles As Integer
+        Dim totalMiles As Integer
+        Dim amoutOwed As Double
+        beginingMiles = CInt(BeginOdometerTextBox.Text)
+        endMiles = CInt(EndOdometerTextBox.Text)
+
+        Select Case endMiles - beginingMiles
+            Case < 200
+            Case > 201
+                totalMiles = 200 - (endMiles - beginingMiles)
+                amoutOwed = 0.12 * totalMiles
+        End Select
+
 
     End Sub
-
     Private Sub RentalForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         SetDefaults()
     End Sub
