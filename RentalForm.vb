@@ -143,10 +143,11 @@ Public Class RentalForm
         Return errorCheck
 
     End Function
-    Sub AddMiles()
+    Function AddMiles() As Double
         Dim totalMiles As Integer
         Dim mileConvert As Double
         Dim milesCharge As Double
+        Dim discountReturnMiles As Double
         totalMiles = CInt(EndOdometerTextBox.Text) - CInt(BeginOdometerTextBox.Text)
         If KilometersradioButton.Checked = True Then
             For u = 0 To totalMiles
@@ -167,15 +168,70 @@ Public Class RentalForm
                 End If
             Next
         End If
+        discountReturnMiles = milesCharge
+        Select Case Discounts()
+            Case = 0
+
+            Case = 1
+                discountReturnMiles *= 0.05
+                'milesCharge = discountReturnMiles
+            Case = 2
+                discountReturnMiles *= 0.03
+                'milesCharge = discountReturnMiles
+            Case = 3
+                discountReturnMiles *= 0.08
+                ' milesCharge = discountReturnMiles
+        End Select
         MileageChargeTextBox.Text = milesCharge.ToString("c")
-    End Sub
-    Sub AddDays()
+        Return discountReturnMiles
+    End Function
+    Function AddDays() As Double
         Dim days As Integer
-        Dim dayCharge As Integer = 15
+        Dim dayCharge As Double = 15
+        Dim discountReturnDays As Double
         days = CInt(DaysTextBox.Text)
         dayCharge = days * dayCharge
+        discountReturnDays = dayCharge
+        Select Case Discounts()
+            Case = 0
+
+            Case = 1
+                discountReturnDays *= 0.05
+                'dayCharge = discountReturnDays
+            Case = 2
+                discountReturnDays *= 0.03
+                'dayCharge = discountReturnDays
+            Case = 3
+                discountReturnDays *= 0.08
+                'dayCharge = discountReturnDays
+        End Select
         DayChargeTextBox.Text = dayCharge.ToString("c")
-    End Sub
+        Return discountReturnDays
+
+    End Function
+    Function Discounts() As Integer
+        'Dim memberDiscount As Integer
+        'Dim seniorDiscount As Integer
+        Dim totalDiscount As Integer
+        If Seniorcheckbox.Checked = False And AAAcheckbox.Checked = False Then
+            totalDiscount = 0
+        End If
+
+        If AAAcheckbox.Checked = True Then
+            'memberDiscount = 1
+            totalDiscount = 1
+        End If
+        If Seniorcheckbox.Checked = True Then
+            'seniorDiscount = 2
+            totalDiscount = 2
+        End If
+        If Seniorcheckbox.Checked = True And AAAcheckbox.Checked = True Then
+            totalDiscount = 3
+        End If
+        Return totalDiscount
+
+
+    End Function
     Sub AddDistance()
         Dim totalDistance As Integer
         totalDistance = CInt(BeginOdometerTextBox.Text) + CInt(EndOdometerTextBox.Text)
@@ -192,12 +248,14 @@ Public Class RentalForm
 
     Private Sub CalculateButton_Click(sender As Object, e As EventArgs) Handles CalculateButton.Click
 
-
-
+        Dim discountStorage As Double
+        'Dim textDiscount As String
         Select Case UserInputCheck()
             Case = 0
-                AddDays()
-                AddMiles()
+                discountStorage = AddDays() + AddMiles()
+                TotalDiscountTextBox.Text = discountStorage.ToString("c")
+                'AddDays()
+                'AddMiles()
                 AddDistance()
             Case = 1
                 MsgBox("Name")
@@ -219,8 +277,6 @@ Public Class RentalForm
                 MsgBox("Miles we inputed wrong")
             Case = 10
                 MsgBox("invalid amout of days")
-
-
         End Select
 
 
