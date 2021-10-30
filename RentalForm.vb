@@ -284,3 +284,4 @@ Public Class RentalForm
 End Class
 
 'kindof a bug with Beginging odometer being 0
+'make dicount text box empty if no dicsount is applyed
