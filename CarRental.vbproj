@@ -97,12 +97,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="RentalForm.vb">
+    <Compile Include="..\CarRental at the vabin\RentalForm.vb">
       <SubType>Form</SubType>
+      <Link>RentalForm.vb</Link>
     </Compile>
-    <Compile Include="RentalForm.Designer.vb">
+    <Compile Include="..\CarRental at the vabin\RentalForm.Designer.vb">
       <DependentUpon>RentalForm.vb</DependentUpon>
       <SubType>Form</SubType>
+      <Link>RentalForm.Designer.vb</Link>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -127,8 +129,9 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="RentalForm.resx">
+    <EmbeddedResource Include="..\CarRental at the vabin\RentalForm.resx">
       <DependentUpon>RentalForm.vb</DependentUpon>
+      <Link>RentalForm.resx</Link>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
