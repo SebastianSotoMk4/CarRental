@@ -252,7 +252,10 @@ Public Class RentalForm
         'Dim textDiscount As String
         Select Case UserInputCheck()
             Case = 0
-                discountStorage = AddDays() + AddMiles()
+                If AAAcheckbox.Checked = True Or Seniorcheckbox.Checked = True Then
+                    discountStorage = AddDays() + AddMiles()
+
+                End If
                 TotalDiscountTextBox.Text = discountStorage.ToString("c")
                 'AddDays()
                 'AddMiles()
