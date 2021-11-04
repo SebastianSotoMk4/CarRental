@@ -27,7 +27,7 @@ Public Class RentalForm
         DayChargeTextBox.Text = ""
         TotalDiscountTextBox.Text = ""
         TotalChargeTextBox.Text = ""
-        SummaryButton.Enabled = False
+        SummaryButton.Enabled = False 'SummaryButton disabled on clear even when there is summary data avalable. also what about the sumary menu item? - TJR
         MilesradioButton.Checked = True
         KilometersradioButton.Checked = False
         AAAcheckbox.Checked = False
@@ -46,7 +46,7 @@ Public Class RentalForm
                 NameTextBox.Text = ""
                 TabIndex = 0
             Else
-                testNumber = CInt(NameTextBox.Text)
+                testNumber = CInt(NameTextBox.Text) 'Why test if this is a number? - TJR
                 errorCheck = 1
                 NameTextBox.Text = ""
                 TabIndex = 0
@@ -71,7 +71,7 @@ Public Class RentalForm
                 CityTextBox.Text = ""
                 TabIndex = 2
             Else
-                testNumber = CInt(CityTextBox.Text)
+                testNumber = CInt(CityTextBox.Text)'Why test if this is a number? - TJR
                 errorCheck = 3
                 CityTextBox.Text = ""
                 TabIndex = 2
@@ -88,7 +88,7 @@ Public Class RentalForm
                 StateTextBox.Text = ""
                 TabIndex = 3
             Else
-                testNumber = CInt(StateTextBox.Text)
+                testNumber = CInt(StateTextBox.Text)'Why test if this is a number? - TJR
                 errorCheck = 4
                 StateTextBox.Text = ""
                 TabIndex = 3
@@ -206,9 +206,9 @@ Public Class RentalForm
         totalMiles -= 200
         If totalMiles >= 0 Then
             For i = 1 To totalMiles
-                If i > 500 Then
+        If i > 500 Then 'miles form 500 to 700 calculating at 0.12. Should offset to 300 here - TJR
                     milesCharge += 0.1
-                ElseIf i <= 500 Then
+        ElseIf i <= 500 Then 'miles form 500 to 700 calculating at 0.12. Should offset to 300 here - TJR
                     milesCharge += 0.12
                 End If
             Next
@@ -300,13 +300,13 @@ Public Class RentalForm
             Case = 8
                 MsgBox("Invalid Number oF days entered.")
             Case = 9
-                MsgBox("Invalid Miles we inputed wrong entered.")
+                MsgBox("Invalid Miles we inputed wrong entered.") 'Nearly english words - TJR
             Case = 10
                 MsgBox("Invalid amout of days entered.")
             Case = 11
                 MsgBox("All Feilds empty.")
         End Select
-        SummaryButton.Enabled = True
+        SummaryButton.Enabled = True 'what about the sumary menu item? - TJR
         Me.customersHelped += 1
     End Sub
 
